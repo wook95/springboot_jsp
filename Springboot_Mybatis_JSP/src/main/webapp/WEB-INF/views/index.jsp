@@ -1,4 +1,8 @@
 <!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+
+
 <html>
   <head>
     <!-- Required meta tags -->
@@ -54,7 +58,6 @@
 
 
 
-
 <footer class="footer mt-auto py-3 bg-dark">
   <div class="container">
     <span class="text-muted">Place sticky footer content here.</span>
@@ -62,6 +65,7 @@
 </footer>
 
 
+</div>
 
 
 
