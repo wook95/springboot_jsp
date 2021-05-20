@@ -1,6 +1,8 @@
 <!doctype html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+
 
 
 <html>
@@ -49,12 +51,31 @@
 
     <div class="p-5 mt-4 bg-light rounded-3">
       <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">나는 월요일이 좋아!</h1>
+        <h1 class="display-5 fw-bold">연습 페이지</h1>
         <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
         <button class="btn btn-primary btn-lg" type="button">Example button</button>
       </div>
 	
 	</div>
+
+
+
+
+<div class="container">
+
+		<!--  spring:message code="프로퍼티스 파일의 키"  -->
+	<!--키가 없을 경우 text에 있는 메세지 출력  -->
+	<h1><spring:message code="hello1234" text="dafault message">  </spring:message> </h1>
+	<h1><spring:message code="hello">  </spring:message> </h1>
+	<h1><spring:message code="board.notice.list.welcome">  </spring:message> </h1>
+	<h1><spring:message code="user.welcome" arguments="${user}, ${msg}" argumentSeparator=",">  </spring:message> </h1>
+	
+</div>
+
+
+
+
+
 
 
 
