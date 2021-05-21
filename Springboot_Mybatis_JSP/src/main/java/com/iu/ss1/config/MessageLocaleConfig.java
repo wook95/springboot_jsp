@@ -20,44 +20,45 @@ public class MessageLocaleConfig implements WebMvcConfigurer{
 	public LocaleResolver localResolver() {
 		//session을 사용하여 설정하는 경우
 		SessionLocaleResolver resolver = new SessionLocaleResolver();
-		resolver.setDefaultLocale(Locale.KOREAN);
+		resolver.setDefaultLocale(Locale.KOREA);
 	
 		
 		//쿠키를 사용하여 설정
 		CookieLocaleResolver cookiResolver = new CookieLocaleResolver();
-		cookiResolver.setDefaultLocale(Locale.KOREAN);
+		cookiResolver.setDefaultLocale(Locale.KOREA);
 		cookiResolver.setCookieName("lang");
 		
-		return cookiResolver;
+		return resolver;
 		
 		
 		
 	}
 	
 	
+	//interceptor
+	
+	//@Bean
+	public LocaleChangeInterceptor localeChangeInterceptor() {
+		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+		localeChangeInterceptor.setParamName("lang");
+		//파라미터에 따라 언어 구분
+		//url?lang=en
+		
+		
+		return localeChangeInterceptor;
+		
+		
+	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
 
-//	@Bean
-//	public LocaleChangeInterceptor localeChangeInterceptor() {
-//		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-//		localeChangeInterceptor.setParamName("lang");
-//		//파라미터에 따라 언어 구분
-//		//url?lang=en
-//		
-//		
-//		return localeChangeInterceptor();
-//		
-//		
-//	}
-//	
-//	@Override
-//	public void addInterceptors(InterceptorRegistry registry) {
-//
-//		registry.addInterceptor(localeChangeInterceptor())
-//				.addPathPatterns("/**");
-//		
-//		
-//		// TODO Auto-generated method stub
-//	}
+		registry.addInterceptor(localeChangeInterceptor())
+				.addPathPatterns("/**");
+		
+		
+		// TODO Auto-generated method stub
+	}
 	
 	
 	

@@ -1,6 +1,7 @@
 <!doctype html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 
@@ -15,6 +16,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 
     <title>Hello, JSP!</title>
+    
+    <style type="text/css">
+  
+    .c1{
+    color : red;
+    }
+    </style>
   </head>
   <body>
     
@@ -61,16 +69,45 @@
 
 
 
-<div class="container">
+<form:form action="./join" modelAttribute="memberVO" method="post">
 
-		<!--  spring:message code="프로퍼티스 파일의 키"  -->
-	<!--키가 없을 경우 text에 있는 메세지 출력  -->
-	<h1><spring:message code="hello1234" text="dafault message">  </spring:message> </h1>
-	<h1><spring:message code="hello">  </spring:message> </h1>
-	<h1><spring:message code="board.notice.list.welcome">  </spring:message> </h1>
-	<h1><spring:message code="user.welcome" arguments="${user}, ${msg}" argumentSeparator=",">  </spring:message> </h1>
-	
+
+
+<div class="input-group mb-3"  style=" width: 300px;">
+  <form:input path="id" class="form-control" placeholder="id" aria-label="Recipient's username" aria-describedby="button-addon2" ></form:input>
 </div>
+
+
+<div class="input-group mb-3" style=" width: 300px;">
+  <form:password path="pw"  class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="button-addon2"></form:password>
+</div>
+
+<!-- <div class="input-group mb-3" style=" width: 300px;">
+  <input name="pw1" type="text" class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="button-addon2">
+</div> -->
+
+<div class="input-group mb-3"  style=" width: 300px;">
+  <form:input path="name" class="form-control" placeholder="name" aria-label="Recipient's username" aria-describedby="button-addon2" ></form:input>
+	<br><form:errors path="name"></form:errors>
+</div>
+
+<div class="input-group mb-3"  style=" width: 300px;">
+  <form:input path="email" class="form-control" placeholder="email" aria-label="Recipient's username" aria-describedby="button-addon2" ></form:input>
+	<br><form:errors class="c1" path="email"></form:errors>
+</div>
+
+<div class="input-group mb-3"  style=" width: 300px;">
+  <form:input path="phone" type="text" class="form-control" placeholder="phone" aria-label="Recipient's username" aria-describedby="button-addon2" ></form:input>
+</div>
+<!-- 
+<div>
+<input type="file" name="avatar" id="avatar">
+</div> -->
+
+<input type="submit" id="btn" value="JOIN" class="button">
+</form:form>
+
+
 
 
 
