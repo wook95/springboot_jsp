@@ -8,23 +8,47 @@
 
 
 <insert id="setJoin" parameterType="MemberVO" >
-insert member values(#{id},#{pw},#{name},#{email},#{phone})
+insert member values(#{username},#{password},#{name},#{email},#{phone},1)
+</insert>
+<insert id="setMemberRole" parameterType="java.util.Map">
+insert into member_role (username,id)
+values (#{username},(select id from role where roleName=#{roleName}))
 </insert>
 
 
 
-
-<select id="getLogin" parameterType="MemberVO" resultType="MemberVO">
-select * from member
-where id=#{id} and pw=#{pw}
+<select id="getLogin" parameterType="MemberVO" resultMap="MemberResult">
+select M.*,R.*
+from member M left join member_role MR
+on M.username=MR.username
+inner join role R
+on MR.id=R.id
+where M.username=#{username}<!--  and M.password=#{password} -->
 </select>
 
+	<resultMap type="MemberVO" id="MemberResult">
+	
+	<id property="username" column="username"/>
+	<result property="password" column="password"/>
+	<result property="name" column="name"/>
+	<result property="email" column="email"/>
+	<result property="phone" column="phone"/>
+	<result property="enabled" column="enabled"/>
+	
+		<collection property="roles" javaType="java.util.List" ofType="com.iu.ss1.member.RoleVO">
+			<id property="id" column="id"/>
+			<result property="roleName" column="roleName"/>
+		</collection>
+	
+	</resultMap>
+	
+	
 <update id="setUpdate" parameterType="MemberVO">
-update member set pw=#{pw},name=#{name},email=#{email},phone=#{phone} where id=#{id}
+update member set password=#{password},name=#{name},email=#{email},phone=#{phone} where username=#{username}
 </update>
 
 <delete id="setDelete" parameterType="MemberVO">
-delete from member where id=#{id}
+delete from member where username=#{username}
 </delete>
 
 

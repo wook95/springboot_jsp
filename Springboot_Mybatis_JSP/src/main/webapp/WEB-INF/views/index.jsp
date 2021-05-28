@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 
@@ -55,6 +56,23 @@
         <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
         <button class="btn btn-primary btn-lg" type="button">Example button</button>
       </div>
+	
+	
+	<div class="container">
+		<h1>
+			<sec:authorize access="isAuthenticated()">
+				로그인 성공 상태
+			</sec:authorize>
+			
+			<sec:authorize access="!isAuthenticated()">
+				로그인 안 한 상
+			</sec:authorize>
+		
+		
+			<%-- <sec:authentication property="principal.username"/>님 환3 --%>
+		</h1>
+	
+	</div>
 	
 	</div>
 
